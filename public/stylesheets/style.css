@@ -1,0 +1,70 @@
+body {
+  padding: 50px;
+  background-color: #222;
+  margin: 0 auto;
+  color: #e0e0e0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.container {
+	margin: 0 auto;
+	width: 520px;
+}
+
+.target {
+	position: relative;
+}
+
+.target .label{
+	vertical-align: 50%;
+}
+
+.progress-bar {
+	background-color: #1a1a1a;
+	height: 25px;
+	min-height: inherit!important;
+	padding: 5px;
+	width: 350px;
+	margin: 50px 0;			
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+	-webkit-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+	box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;	          
+}
+
+.blue span {
+	background-color: #34c2e3;
+}
+
+.progress-bar span {
+	display: inline-block;
+	height: 100%;	
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+        -webkit-transition: width .4s ease-in-out;
+        -moz-transition: width .4s ease-in-out;
+        -ms-transition: width .4s ease-in-out;
+        -o-transition: width .4s ease-in-out;
+        transition: width .4s ease-in-out;    
+}
+
+.popup {
+	position: absolute;
+	top: 10px;
+	right: -0px;
+	margin-right: -200px;
+}
+
+.target[status=collapsed] .popup {
+	visibility: hidden;
+}
