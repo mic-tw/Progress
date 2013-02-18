@@ -1,0 +1,37 @@
+extends layout
+
+block inner-script
+	script(type="text/javascript")
+		$(document).ready(function(){
+			$('.delete').click(function(){
+				deleteProgressCallback('#{user}', $(this));
+			});
+			$('input[name="progress_date"]').datepicker();
+			$('.milestone .popup input[type="submit"]').click(function(){
+				var target = $(this);
+				submitNewProgressCallback('#{user}', target, target.parents('.milestone'));
+				return false;
+			});
+			validateProgressForm();
+		});
+
+block content
+	p
+		a(href='/#{user}') Back
+	p Welcome #{userName}
+	div.container
+		- if(target) {
+		div.milestone
+			include milestone_progress
+			div.popup
+				include progress_popup
+		- }
+		- if(target && target.progress) {
+		for progress in target.progress
+			div.task-progress(uuid='#{progress.uuid}', task='#{target.uuid}')
+				div.row-fluid
+					div.span4 #{progress.value}
+					div.span6 #{progress.date}
+					div.span2
+						b.adv_setting.delete.btn DELETE
+		- }

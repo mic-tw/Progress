@@ -4,56 +4,53 @@ block inner-script
 	script(type="text/javascript")
 		$(document).ready(function(){
 			$('.target .popup .close').bind('click', function(){
-				$(this).parentsUntil('.target').attr('status', 'collapsed');
+				$(this).parents('.target').attr('status', 'collapsed');
 			});
 			$('.target .adv_setting').bind('click', function(){
 				var parent = $(this).parents('.target');
-				console.log(parent);
 				parent.attr('status', 'expended');
 			});
+			$('#newTaskForm').bind('submit', function(){
+				return isDigitValue( $('#step1_value') ) && notEmpty( $('#target_name') );
+			});
+			$('input[name="progress_date"]').datepicker();
+			$('.target .popup .submit').click(function(){
+				var target = $(this);
+				submitNewProgressCallback('#{user}', target, target.praents('.target'));
+				return false;
+			});
+			validateProgressForm();
 		});
 		
 block content
 	p Welcome #{userName}
-	div(data-inline=true)
-		form(action='#{user}/target/add', method='POST')
-			div(data-role='fieldcontain')
-				fieldset(data-role='controlgroup')
-					label Target:
+	div.top-menu(data-inline=true)
+		form(action='/#{user}/target/add', method='POST', id='newTaskForm')
+			div.row-menu
+				div
+					fieldset
+						legend New goal!
+						label Target:
 						input(type='text', id='target_name', name='target_name')
-			div(data-role='fieldcontain')
-				fieldset(data-role='controlgroup')
-					label description:
-						input(type='text', id='target_description', name='target_description')
-			div(data-role='fieldcontain')
-				fieldset(data-role='controlgroup')
-					label Mission1's goal:
+						label Mission1's goal:
 						input(type='text', id='step1_value', name='step1_value')
-			div(data-role='fieldcontain)
-				fieldset(data-role='controlgroup')
-					label +:
-						input(type='submit', value='Go!')
+						label description:
+						input(type='text', id='target_description', name='target_description')
+			div
+				div
+					input.btn(type='submit', value='Add')
 
 	p Targets
 	div.container(data-inline=true)
 		- if(targets){
 		for target in targets
 			div.target(status='collapsed')
-				div.row-fluid
-					div.span4(title='#{target.description} by #{target.user}') #{target.name}
-					div.span6.progress-bar.blue
-						span(style='width: 40%')
-					div.span2
-						b.adv_setting +
+				include milestone_progress
+					block expanding
+						div.span2
+							b.adv_setting +
 				div.popup
-					form(action='#{user}/milesotn/add', method='POST')
-						div(data-role='fieldcontain')
-							fieldset(data-role='controlgroup')
-								label Value:
-									input(type='text', name='progress_value')
-								label Date:
-									input(type='text', name='progress_date')
-							fieldset(data-role='controlgroup')
-								input(type='submit', value='Add')
-					a.close
+					include progress_popup
+						block bottom
+							span.btn.close Close
 		-}

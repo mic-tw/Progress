@@ -10,13 +10,42 @@ a {
   color: #00B7FF;
 }
 
+.top-menu {
+	position: fixed;
+	display: inline-block;
+	top: -10px;
+	left: 10px;
+	padding: 10px 10px 0px 10px;
+	background-color: #F27474;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+	-webkit-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+	box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;	          
+}
+
+
 .container {
 	margin: 0 auto;
 	width: 520px;
 }
 
-.target {
+.task-progress:hover {
+	background-color: #1f1f1f;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.milestone {
+	padding-bottom: 20px;
+}
+
+.target, .milestone, .task-progress {
 	position: relative;
+	padding-bottom: 5px;
+	vertical-align: middle;
 }
 
 .target .label{
@@ -38,11 +67,16 @@ a {
 	box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;	          
 }
 
-.blue span {
+.blue span.bar {
 	background-color: #34c2e3;
 }
 
-.progress-bar span {
+.progress-bar .text {
+	text-align: right;
+	padding-left: 10px;
+}
+
+.progress-bar span.bar {
 	display: inline-block;
 	height: 100%;	
 	-moz-border-radius: 3px;
@@ -67,4 +101,28 @@ a {
 
 .target[status=collapsed] .popup {
 	visibility: hidden;
+}
+
+.form{
+	position: relative;
+}
+
+.form .submit, .form .close {
+	float: right;
+	color: gray;
+	font-weight: bold;
+}
+
+.form .err-text {
+	visibility: hidden;
+	color: red;
+	position: fixed;
+}
+
+.form .err input{
+	border-color: red;
+}
+
+.form .err .err-text {
+	visibility: visible;
 }

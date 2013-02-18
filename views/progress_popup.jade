@@ -1,0 +1,9 @@
+div.form(target_uuid='#{target.uuid}')
+	label Value:
+		input(type='text', name='progress_value')
+		span.err-text a number is required!
+	label Date:
+		input(type='text', name='progress_date')
+		span.err-text couldn't be empty!
+	span.submit.btn Add
+	block bottom

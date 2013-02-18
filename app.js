@@ -28,9 +28,14 @@ app.configure('development', function(){
   app.use( express.errorHandler({ dumpExceptions : true, showStack : true }));
 });
 
+app.get('/test', target.test)
 app.post('/:user/target/add', target.add);
+app.post('/:user/target/:task_uuid/progress/add', target.add_progress);
+app.post('/:user/target/:task_uuid/progress/:progress_uuid/delete', target.delete_progress);
+app.get('/:user/target/:task_uuid', target.show);
 app.get('/:user', target.list);
 app.get('/', target.list);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

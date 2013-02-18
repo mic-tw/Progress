@@ -1,0 +1,15 @@
+- var progress = 0, max = 0, progress_ratio = 0;
+- if(target.milestones && target.milestones.length > 0){
+-	max = target.milestones[0].value;
+-	for(var i = 0 ; target.progress && i < target.progress.length ; i++){
+-		progress += target.progress[i].value;
+-	}
+-	progress_ratio = Math.min(100, Math.max(0, 100.0 * progress / max));
+- }
+div.row-fluid
+	div.span4(title='#{target.description} by #{target.user}') 
+		a(href='/#{user}/target/#{target.uuid}') #{target.name}
+	div.span6.progress-bar.blue(progress='#{progress}', progress_max='#{max}')
+		span.bar(style='width: #{progress_ratio}%')
+		span.text #{progress_ratio}%
+	block expanding
